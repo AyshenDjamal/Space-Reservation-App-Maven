@@ -21,7 +21,7 @@ public class Main {
         System.out.print("Enter your choice: ");
         int option = input.nextInt();
 
-        switch (option) {
+        switch (option) { //
             case 1:
                 adminMenu();
                 break;
