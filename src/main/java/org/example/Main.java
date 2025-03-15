@@ -23,7 +23,7 @@ public class Main {
 
         switch (option) {
             case 1:
-                adminMenu();
+                adminMenu(); //
                 break;
             case 2:
                 customerMenu();
