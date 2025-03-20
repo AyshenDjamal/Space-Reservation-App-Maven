@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Main {
     public static Scanner input = new Scanner(System.in);
     public static WorkSpaceService spaces = new WorkSpaceService();
-    public static ReservationService reserves = new ReservationService();
 
     public static void main(String[] args) {
         spaces.loadSpaces();
@@ -19,6 +18,7 @@ public class Main {
         System.out.println("2. Customer Login");
         System.out.println("0. Exit");
         System.out.print("Enter your choice: ");
+
         int option = input.nextInt();
 
         switch (option) {
@@ -49,13 +49,13 @@ public class Main {
 
         switch (option) {
             case 1:
-                spaces.addSpace();
+                AdminConsole.addSpaceWithUserInput();
                 break;
             case 2:
-                spaces.removeSpace();
+                AdminConsole.removeSpaceWithUserInput();
                 break;
             case 3:
-                spaces.viewAllBookings();
+                AdminConsole.returnToAdminMenu();
                 break;
             case 0:
                 mainMenu();
@@ -79,16 +79,16 @@ public class Main {
 
         switch (option) {
             case 1:
-                reserves.viewSpaces();
+                CustomerConsole.returnToCustomerMenu();
                 break;
             case 2:
-                reserves.bookSpace();
+                CustomerConsole.handleBooking();
                 break;
             case 3:
-                reserves.myBookings();
+                CustomerConsole.returnToCustomerMenuu();
                 break;
             case 4:
-                reserves.cancelBooking();
+                CustomerConsole.handleCancellation();
                 break;
             case 0:
                 mainMenu();
