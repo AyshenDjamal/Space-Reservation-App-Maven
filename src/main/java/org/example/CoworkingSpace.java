@@ -1,8 +1,6 @@
 package org.example;
-import java.io.Serializable;
 
-public class CoworkingSpace implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class CoworkingSpace {
     private int spaceID;
     private String spaceType;
     private double pricePerHour;

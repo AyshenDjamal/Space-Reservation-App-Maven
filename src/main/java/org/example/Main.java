@@ -4,10 +4,8 @@ import java.util.Scanner;
 
 public class Main {
     public static Scanner input = new Scanner(System.in);
-    public static WorkSpaceService spaces = new WorkSpaceService();
 
     public static void main(String[] args) {
-        spaces.loadSpaces();
         mainMenu();
     }
 
@@ -101,7 +99,6 @@ public class Main {
     }
 
     public static void exit() {
-        spaces.saveSpaces();
         System.out.println("Good Bye!");
         System.exit(0);
     }
