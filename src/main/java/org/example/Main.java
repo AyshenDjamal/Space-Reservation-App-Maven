@@ -65,6 +65,7 @@ public class Main {
 
     }
 
+
     public static void customerMenu() {
         System.out.println("-----------Customer Menu-------------");
         System.out.println("1. Browse available spaces");
@@ -83,10 +84,10 @@ public class Main {
                 CustomerConsole.handleBooking();
                 break;
             case 3:
-                CustomerConsole.returnToCustomerMenuu();
+               CustomerConsole.returnToCustomerMenuu();
                 break;
             case 4:
-                CustomerConsole.handleCancellation();
+               CustomerConsole.handleCancellation();
                 break;
             case 0:
                 mainMenu();
@@ -97,6 +98,7 @@ public class Main {
         }
 
     }
+
 
     public static void exit() {
         System.out.println("Good Bye!");

@@ -16,8 +16,6 @@ public class CustomerConsole {
             System.out.print("Enter your reservation ID: ");
             int resID = Main.input.nextInt();
             Main.input.nextLine();
-
-
             System.out.print("Enter your name: ");
             String name = Main.input.nextLine();
             System.out.print("Enter reservation date: ");
@@ -29,7 +27,11 @@ public class CustomerConsole {
             System.out.print("Enter your space ID: ");
             int spaceID = Main.input.nextInt();
 
-            if (ReservationService.bookSpace(resID, name, date, start, end, spaceID)) {
+            CoworkingSpace space = ReservationService.findSpaceID(spaceID);
+
+            Reservation reservation = new Reservation(resID, name, date, start, end, space);
+
+            if (ReservationService.bookSpace(reservation)) {
                 System.out.println("-------------------------------------------------------");
                 System.out.println("Reservation accepted! Space " + resID + "  has been booked for you.");
 
@@ -40,17 +42,18 @@ public class CustomerConsole {
                 break;
             }
         }
-
     }
 
 
     public static void returnToCustomerMenuu() {
-        System.out.println("------------Display My Bookings-------------");
-        ReservationService.myBookings();
-        System.out.println("\nSelect '1' to go back to the Customer Menu");
-        System.out.print("Enter your choice: ");
-        int opt = Main.input.nextInt();
-        Main.customerMenu();
+        System.out.println("------------Display My Booking-------------");
+            System.out.print("Enter your reservation ID:");
+            int resID = Main.input.nextInt();
+            ReservationService.myBookings(resID);
+            System.out.println("\nSelect '1' to go back to the Customer Menu");
+            System.out.print("Enter your choice: ");
+            int opt = Main.input.nextInt();
+            Main.customerMenu();
     }
 
 

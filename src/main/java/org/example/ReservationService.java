@@ -6,7 +6,7 @@ public class ReservationService {
 
 
     public static void viewSpaces() {
-        List<CoworkingSpace> spaceList = ReservationRepository.getAvailableSpaces();
+        List<CoworkingSpace> spaceList = ReservationRepositoryJPA.getAvailableSpaces();
         if (spaceList.isEmpty()) {
             System.out.println("No coworking spaces are available.");
         } else {
@@ -18,18 +18,24 @@ public class ReservationService {
     }
 
 
-    public static boolean bookSpace(int resID, String name, String date, String start, String end, int spaceID) {
-        Reservation reservation = new Reservation(resID, name, date, start, end, spaceID);
-        if (ReservationRepository.insertReservation(reservation)) {
-            ReservationRepository.setSpaceBooked(spaceID);
-            return true;
+
+    public static boolean bookSpace(Reservation reservation) {
+        if(reservation.getSpace() == null || !reservation.getSpace().getIsAvailable()){
+            System.out.println("Space is either invalid or already booked! ");
+            return false;
         }
-        return false;
+        return ReservationRepositoryJPA.insertReservation(reservation);
     }
 
 
-    public static void myBookings() {
-        List<Reservation> bookingList = ReservationRepository.getMyBooking();
+
+    public static CoworkingSpace findSpaceID(int spaceID){
+        return SpaceRepositoryJPA.findSpaceID(spaceID);
+    }
+
+
+    public static void myBookings(int bookingID) {
+        List<Reservation> bookingList = ReservationRepositoryJPA.getMyBooking(bookingID);
         if (bookingList.isEmpty()) {
             System.out.println("You don't have a booking. ");
         } else {
@@ -40,11 +46,7 @@ public class ReservationService {
 
 
     public static boolean cancelBooking(int canID) {
-        if (ReservationRepository.deleteBooking(canID)) {
-            ReservationRepository.setSpaceAvailable(canID);
-            return true;
-        }
-        return false;
+        return ReservationRepositoryJPA.deleteBooking(canID);
     }
 }
 
